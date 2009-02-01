@@ -26,15 +26,15 @@ public final class UnixFilesystem extends Filesystem {
 	}
 	
 	public static byte[] getExtendedAttributes(File file, String name) throws IOException {
-		return LIBC.getExtendedAttributes(file, name);
+		return LIBC.getExtendedAttributes(file.getAbsolutePath(), name);
 	}
 	
 	public static void setExtendedAttributes(File file, String name, byte[] value) throws IOException {
-		LIBC.setExtendedAttributes(file, name, value);
+		LIBC.setExtendedAttributes(file.getAbsolutePath(), name, value);
 	}
 	
 	public static List<String> listExtendedAttributes(File file) throws IOException {
-		return LIBC.listExtendedAttributes(file);
+		return LIBC.listExtendedAttributes(file.getAbsolutePath());
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 
 import net.cheney.oakland.channel.Channel;
+import net.cheney.oakland.libc.FileDescriptor;
 
 public final class TCPClientSocket extends TCPSocket {
 
@@ -12,7 +13,7 @@ public final class TCPClientSocket extends TCPSocket {
 		super();
 	}
 	
-	TCPClientSocket(int fd) throws IOException {
+	TCPClientSocket(FileDescriptor fd) throws IOException {
 		super(fd);
 	}
 	

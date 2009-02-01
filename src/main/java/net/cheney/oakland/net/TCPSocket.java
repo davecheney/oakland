@@ -3,6 +3,7 @@ package net.cheney.oakland.net;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+import net.cheney.oakland.libc.FileDescriptor;
 import net.cheney.oakland.libc.ProtocolType;
 import net.cheney.oakland.libc.SocketType;
 
@@ -14,7 +15,7 @@ public abstract class TCPSocket extends IPSocket {
 		super(SocketType.STREAM, ProtocolType.TCP);
 	}
 	
-	TCPSocket(int fd) {
+	TCPSocket(FileDescriptor fd) {
 		super(fd);
 	}
 

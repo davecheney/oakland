@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.cheney.oakland.io.Closeable;
 import net.cheney.oakland.libc.AddressFamily;
+import net.cheney.oakland.libc.FileDescriptor;
 import net.cheney.oakland.libc.LibC;
 import net.cheney.oakland.libc.ProtocolType;
 import net.cheney.oakland.libc.SocketType;
@@ -12,15 +13,13 @@ public abstract class Socket implements Closeable {
 
 	static final LibC LIBC = LibC.getLibc();
 	
-	private volatile boolean closed = false;
-	
-	private final int fd;
+	private final FileDescriptor fd;
 
-	Socket(int fd) {
+	Socket(FileDescriptor fd) {
 		this.fd = fd;
 	}
 	
-	final int fd() {
+	final FileDescriptor fd() {
 		return this.fd;
 	}
 	
@@ -28,16 +27,8 @@ public abstract class Socket implements Closeable {
 		this(LIBC.socket(af, st, pt));
 	}
 	
-	public final void close() {
-		LIBC.close(fd);
-		closed = true;
+	public void close() {
+		fd.close();		
 	}
-	
-	@Override
-	protected final void finalize() {
-		if(!closed) {
-			System.out.println("Socket not closed before GC");
-			close();
-		}
-	}
+
 }

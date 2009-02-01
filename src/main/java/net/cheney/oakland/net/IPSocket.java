@@ -3,6 +3,7 @@ package net.cheney.oakland.net;
 import java.io.IOException;
 
 import net.cheney.oakland.libc.AddressFamily;
+import net.cheney.oakland.libc.FileDescriptor;
 import net.cheney.oakland.libc.ProtocolType;
 import net.cheney.oakland.libc.SocketType;
 
@@ -12,7 +13,7 @@ abstract class IPSocket extends Socket {
 		super(AddressFamily.INET, st, pt);
 	}
 
-	IPSocket(int fd) {
+	IPSocket(FileDescriptor fd) {
 		super(fd);
 	}
 
